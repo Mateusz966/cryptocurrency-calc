@@ -1,10 +1,12 @@
+// Set up server
 import express from 'express';
 import request from 'request';
 import fs from 'fs';
 import cron from 'node-cron';
 import path from 'path';
+import apiResponse from './apiController.js';
 
-const port = 8080;
+const port = 9222;
 const apiServer = 'https://www.coincalculators.io/api/allcoins.aspx?hashrate=100000000';
 const app = express();
 
@@ -14,8 +16,7 @@ app.listen(port, () => {
   console.log(`server running at ${port} `);
 });
 
-
-cron.schedule('* * * */2 *', () => {
+cron.schedule('* * * * *', () => {
   request(`${apiServer}`, (err, res, body) => {
     console.log(err);
     console.log('statusCode:', res && res.statusCode);
@@ -24,4 +25,12 @@ cron.schedule('* * * */2 *', () => {
       console.log('The file has been saved!');
     });
   });
+});
+
+// Data from form
+
+app.post('/server.js', express.urlencoded(), (req, res, callback) => {
+  const cryptocurrency = req.body.cryptocurrency;
+  const hashrate = req.body.hashrate;
+  res.end(JSON.stringify(apiResponse(cryptocurrency, hashrate)));
 });
