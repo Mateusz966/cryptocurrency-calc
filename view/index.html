@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div class="form-wrapper">
+    <form action="../server.js" method="POST">
+      <input name="cryptocurrency" type="text" placeholder="cryptocurrency">
+      <input name="hashrate" type="text" placeholder="hashrate in MH/s">
+      <input name="powerConsuming" type="text" placeholder="Power consuming">
+      <button type="submit">send</button>
+    </form>
+  </div>
+</body>
+</html>
+
+<script>
+  let form = document.querySelector('form');
+  form.addEventListener('click', (event) => {
+    // event.preventDefault();
+  }, false);
+</script>
