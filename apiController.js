@@ -2,15 +2,16 @@ import data from './data/apiResponse.json';
 
 const kwhUSD = 0.13;
 
-export default function apiResponse (coinName, hashrate, wattPower) {
-  let coinInfo = [];
+export const apiResponse = (coinName, hashrate, wattPower) => {
+
+  let cryptocurrencyInfo = [];
   let result;
   let profitPerDay;
 
-  coinInfo = data;
-  // Search in json user cryptocurrency
-  result = coinInfo.find(x => x.name === coinName);
-  //  From json get profit in hour
+  cryptocurrencyInfo = data;
+  // Search in json cryptocurrency
+  result = cryptocurrencyInfo.find(x => x.name === coinName);
+  // From json get profit in day without energy cost and with default hashrate
   profitPerDay = result.revenueInDayUSD;
 
   if (result) {
@@ -19,18 +20,45 @@ export default function apiResponse (coinName, hashrate, wattPower) {
   else {
     result = 'nic tu nie ma';
   }
-  return calcProfit(profitPerDay, Number(wattPower));
+
+  profitPerDay = calcProfit(profitPerDay, Number(wattPower), hashrate);
+
+  return outputData(Number(profitPerDay))
+
 };
 
 
-const calcProfit = (profit, wattPower) => {
-  let arrCalcValue= [];
+const calcProfit = (profit, wattPower, hashrate) => {
+
   let energyCost;
+  let profitPerDay;
+  const oneDay = 24;
 
-  energyCost = (24 * wattPower) / 1000;
+  energyCost = (oneDay * wattPower) / 1000;
   energyCost = energyCost * kwhUSD;
-  arrCalcValue.push(energyCost);
-  arrCalcValue.push(profit);
 
-  return JSON.stringify(arrCalcValue);
-}
+  // Calc profit per day with user hashrate and energy cost
+  profitPerDay = (profit * hashrate) - energyCost;
+
+  return formatValue(Number(profitPerDay));
+
+};
+
+
+const formatValue = (value) => {
+
+  return value.toFixed(5);
+
+};
+
+const outputData = (value) => {
+
+  const data = {
+    profitPerDay: value,
+    profitPerMonth: value * 30,
+    profitPerYear: value * 365
+  };
+
+  return data;
+
+};
