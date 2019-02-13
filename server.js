@@ -14,7 +14,7 @@ const app = express();
 app.use(express.static(path.join(__dirname,'/')));
 app.use(bodyParser.json());
 
-cron.schedule('*/50 * * * *', () => {
+cron.schedule('*/30 * * * *', () => {
 
   request(`${apiServer}`, (err, res, body) => {
 

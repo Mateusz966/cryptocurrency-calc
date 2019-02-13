@@ -12,7 +12,7 @@
       <input id="cryptocurrency" name="cryptocurrency" type="text" placeholder="cryptocurrency">
       <input id="hashrate" name="hashrate" type="text" placeholder="hashrate in MH/s">
       <input id="powerConsuming" name="powerConsuming" type="text" placeholder="Power consuming">
-      <button type="button" onclick="calculateProficient()">Send</button>
+      <button type="button" onclick="calculateProficient()">Calculate</button>
     </div>
   </div>
   <div class="calc">
@@ -55,11 +55,13 @@ const calculateProficient = () => {
   req.open("POST", url, true);
   req.setRequestHeader("Content-Type", "application/json");
   req.onreadystatechange = (callback) => {
+
     if(req.readyState === 4 && req.status === 200) {
       showProfit(req.response)
     } else {
       console.log(req.readyState, req.status);
     }
+
   }
 
   req.send(JSON.stringify(data));

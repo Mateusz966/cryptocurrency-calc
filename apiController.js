@@ -47,7 +47,7 @@ const calcProfit = (profit, wattPower, hashrate) => {
 
 const formatValue = (value) => {
 
-  return value.toFixed(5);
+  return value.toFixed(3);
 
 };
 
