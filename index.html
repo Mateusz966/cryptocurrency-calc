@@ -40,7 +40,7 @@ const calculateProficient = () => {
     cryptocurrency: null,
     hashrate: null,
     powerConsuming: null
-  }
+  };
 
   const req = new XMLHttpRequest();
   const url = "/calc-value";
@@ -57,7 +57,7 @@ const calculateProficient = () => {
   req.onreadystatechange = (callback) => {
 
     if(req.readyState === 4 && req.status === 200) {
-      showProfit(req.response)
+      showProfit(req.response);
     } else {
       console.log(req.readyState, req.status);
     }
@@ -69,8 +69,8 @@ const calculateProficient = () => {
 };
 
 const showProfit = (profit) => {
-  let jsonProfit = JSON.parse(profit)
+  let jsonProfit = JSON.parse(profit);
   console.log(jsonProfit);
-}
+};
 
 </script>

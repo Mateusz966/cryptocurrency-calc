@@ -1,4 +1,8 @@
-import data from './data/apiResponse.json';
+try {
+  var data = require('./data/apiResponse.json');
+} catch (error) {
+  console.log(error);
+}
 
 const kwhUSD = 0.13;
 
@@ -23,7 +27,7 @@ export const apiResponse = (coinName, hashrate, wattPower) => {
 
   profitPerDay = calcProfit(profitPerDay, Number(wattPower), hashrate);
 
-  return outputData(Number(profitPerDay))
+  return outputData(Number(profitPerDay));
 
 };
 

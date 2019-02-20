@@ -14,14 +14,35 @@ const app = express();
 app.use(express.static(path.join(__dirname,'/')));
 app.use(bodyParser.json());
 
-cron.schedule('*/30 * * * *', () => {
+
+
+// Check if the directory exist if not it was create directory and empty json file
+
+const jsonResponseDirectory = './data';
+
+if(!fs.existsSync(jsonResponseDirectory)) {
+
+  fs.promises.mkdir(jsonResponseDirectory, { recursive: true }).then(() => saveDataFromApi());
+
+} else {
+
+  cron.schedule('*/30 * * * *', () => {
+
+    saveDataFromApi();
+  
+  });
+
+}
+
+
+const saveDataFromApi = () => {
 
   request(`${apiServer}`, (err, res, body) => {
-
+  
     console.log(err);
     console.log('statusCode:', res && res.statusCode);
 
-    fs.writeFile("data/apiResponse.json", body, (err) => {
+    fs.writeFile(`${jsonResponseDirectory}/apiResponse.json`, body, (err) => {
 
       if (err) throw err;
       console.log('The file has been saved!');
@@ -30,7 +51,8 @@ cron.schedule('*/30 * * * *', () => {
 
   });
 
-});
+}
+
 
 app.post('/calc-value', (req, res) => {
 
