@@ -1,6 +1,6 @@
 require('babel-register')({
-  presets: [ 'env' ]
-})
+  presets: ['env'],
+});
 
 // Import the server.
-module.exports = require('./server.js')
+module.exports = require('./server.js');
