@@ -3,4 +3,4 @@ require('babel-register')({
 });
 
 // Import the server.
-module.exports = require('./server.js');
+module.exports = require('./server/server.js');
