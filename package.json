@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/Mateusz966/cryptocurrency-calc#readme",
   "dependencies": {
+    "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "babel-preset-react-app": "^3.1.2",
     "babel-register": "^6.26.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
@@ -26,6 +28,8 @@
     "node": "^11.5.0",
     "node-cron": "^2.0.3",
     "nodemon": "^1.18.10",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "request": "^2.88.0"
   },
   "devDependencies": {
