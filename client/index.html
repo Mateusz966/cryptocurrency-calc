@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div id="app" class="form-wrapper">
+    <div role="form">
+      <input id="cryptocurrency" name="cryptocurrency" type="text" placeholder="cryptocurrency">
+      <input id="hashrate" name="hashrate" type="text" placeholder="hashrate in MH/s">
+      <input id="powerConsuming" name="powerConsuming" type="text" placeholder="Power consuming">
+      <button type="button" onclick="calculateProficient()">Calculate</button>
+    </div>
+  </div>
+  <div class="calc">
+    <div class="row">
+      <div class="col">
+        <div class="inner">
+          Zarobiłeś
+
+        </div>
+      </div>
+      <div class="col">
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+<script>
+const form = document.querySelector('form');
+
+const calculateProficient = () => {
+
+  const data = {
+    cryptocurrency: null,
+    hashrate: null,
+    powerConsuming: null
+  };
+
+  const req = new XMLHttpRequest();
+  const url = "/calc-value";
+  const cryptocurrency = document.querySelector('#cryptocurrency').value;
+  const hashrate = document.querySelector('#hashrate').value;
+  const powerConsuming = document.querySelector('#powerConsuming').value;
+
+  data.cryptocurrency = cryptocurrency;
+  data.hashrate = hashrate;
+  data.powerConsuming = powerConsuming;
+
+  // const { cryptocurrency, hashrate, powerConsuming } = data;
+
+  req.open("POST", url, true);
+  req.setRequestHeader("Content-Type", "application/json");
+  req.onreadystatechange = (callback) => {
+    if(req.readyState === 4 && req.status === 200) {
+      showProfit(req.response);
+    } else {
+      console.log(req.readyState, req.status);
+    }
+  }
+
+  req.send(JSON.stringify(data));
+
+};
+
+const showProfit = (profit) => {
+  let jsonProfit = JSON.parse(profit);
+  console.log(jsonProfit);
+};
+
+</script>
