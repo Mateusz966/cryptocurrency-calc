@@ -1,13 +1,23 @@
+/* eslint-disable no-undef */
+/* eslint-disable react/react-in-jsx-scope */
+
 function ShowProfitability(props) {
   return (
-      <div>Opłacalność</div>
+    <SingleProfitabilityBox />
   );
 }
 
 function SingleProfitabilityBox(props) {
   return (
-    <p>
-      Pojedynczy box
-    </p>
+    <div className="wrapper">
+      <span className="heading">
+        Zarobek w
+      </span>
+      <p>
+        zarobek
+      </p>
+    </div>
   );
 }
+
+export default ShowProfitability;
