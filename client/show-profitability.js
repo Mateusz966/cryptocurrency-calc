@@ -1,15 +1,25 @@
+/* eslint-disable no-undef */
+/* eslint-disable react/react-in-jsx-scope */
+
 function ShowProfitability(props) {
-  return React.createElement(
-    "div",
-    null,
-    "Op\u0142acalno\u015B\u0107"
-  );
+  return React.createElement(SingleProfitabilityBox, null);
 }
 
 function SingleProfitabilityBox(props) {
   return React.createElement(
-    "p",
-    null,
-    "Pojedynczy box"
+    "div",
+    { className: "wrapper" },
+    React.createElement(
+      "span",
+      { className: "heading" },
+      "Zarobek w"
+    ),
+    React.createElement(
+      "p",
+      null,
+      "zarobek"
+    )
   );
 }
+
+export default ShowProfitability;

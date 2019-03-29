@@ -6,6 +6,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+/* eslint-disable no-undef */
+/* eslint-disable react/react-in-jsx-scope */
 var Form = function (_React$Component) {
   _inherits(Form, _React$Component);
 
@@ -22,12 +24,16 @@ var Form = function (_React$Component) {
     key: "render",
     value: function render() {
       return React.createElement(
-        "p",
-        null,
-        "Formularz"
+        "div",
+        { className: "form-wrapper" },
+        React.createElement("input", { id: "cryptocurrency", name: "cryptocurrency", type: "text", placeholder: "Nazwa kryptowaluty" }),
+        React.createElement("input", { id: "hashrate", name: "hashrate", type: "text", placeholder: "hashrate w MH/s" }),
+        React.createElement("input", { id: "powerConsuming", name: "powerConsuming", type: "text", placeholder: "Pob\xF3r energii przez kopark\u0119" })
       );
     }
   }]);
 
   return Form;
 }(React.Component);
+
+export default Form;
