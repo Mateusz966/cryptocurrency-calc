@@ -1,5 +1,7 @@
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -16,19 +18,45 @@ var Form = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, props));
 
-    _this.state = {};
+    _this.state = {
+      cryptocurrency: '',
+      hashrate: '',
+      powerConsuming: ''
+    };
+
+    _this.handleChange = _this.handleChange.bind(_this);
+    _this.handleRequestToServer = _this.handleRequestToServer.bind(_this);
     return _this;
   }
 
   _createClass(Form, [{
-    key: "render",
+    key: 'handleRequestToServer',
+    value: function handleRequestToServer(event) {
+      console.log(event);
+    }
+  }, {
+    key: 'handleChange',
+    value: function handleChange(event) {
+      this.setState(_defineProperty({}, event.target.name, event.target.value));
+    }
+  }, {
+    key: 'render',
     value: function render() {
+      var _this2 = this;
+
+      var _state = this.state,
+          cryptocurrency = _state.cryptocurrency,
+          hashrate = _state.hashrate,
+          powerConsuming = _state.powerConsuming;
+
       return React.createElement(
-        "div",
-        { className: "form-wrapper" },
-        React.createElement("input", { id: "cryptocurrency", name: "cryptocurrency", type: "text", placeholder: "Nazwa kryptowaluty" }),
-        React.createElement("input", { id: "hashrate", name: "hashrate", type: "text", placeholder: "hashrate w MH/s" }),
-        React.createElement("input", { id: "powerConsuming", name: "powerConsuming", type: "text", placeholder: "Pob\xF3r energii przez kopark\u0119" })
+        'div',
+        { className: 'form-wrapper' },
+        React.createElement('input', { id: 'cryptocurrency', name: 'cryptocurrency', value: cryptocurrency, onChange: function onChange(event) {
+            _this2.handleChange(event);_this2.handleRequestToServer(event);
+          }, type: 'text', placeholder: 'Nazwa kryptowaluty' }),
+        React.createElement('input', { id: 'hashrate', name: 'hashrate', type: 'text', value: hashrate, onChange: this.handleChange, placeholder: 'hashrate w MH/s' }),
+        React.createElement('input', { id: 'powerConsuming', name: 'powerConsuming', value: powerConsuming, onChange: this.handleChange, type: 'text', placeholder: 'Pob\xF3r energii przez kopark\u0119' })
       );
     }
   }]);

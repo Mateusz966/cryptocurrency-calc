@@ -3,7 +3,9 @@
 
 function ShowProfitability(props) {
   return (
-    <SingleProfitabilityBox />
+    <div className="calc row">
+      <SingleProfitabilityBox />
+    </div>
   );
 }
 
@@ -11,7 +13,7 @@ function SingleProfitabilityBox(props) {
   return (
     <div className="wrapper">
       <span className="heading">
-        Zarobek w
+        Zarobek w przeciągu:
       </span>
       <p>
         zarobek

@@ -2,7 +2,11 @@
 /* eslint-disable react/react-in-jsx-scope */
 
 function ShowProfitability(props) {
-  return React.createElement(SingleProfitabilityBox, null);
+  return React.createElement(
+    "div",
+    { className: "calc row" },
+    React.createElement(SingleProfitabilityBox, null)
+  );
 }
 
 function SingleProfitabilityBox(props) {
@@ -12,7 +16,7 @@ function SingleProfitabilityBox(props) {
     React.createElement(
       "span",
       { className: "heading" },
-      "Zarobek w"
+      "Zarobek w przeci\u0105gu:"
     ),
     React.createElement(
       "p",

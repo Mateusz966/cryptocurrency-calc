@@ -7,32 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <div id="app" class="form-wrapper">
-    <div role="form">
-      <input id="cryptocurrency" name="cryptocurrency" type="text" placeholder="cryptocurrency">
-      <input id="hashrate" name="hashrate" type="text" placeholder="hashrate in MH/s">
-      <input id="powerConsuming" name="powerConsuming" type="text" placeholder="Power consuming">
-      <button type="button" onclick="calculateProficient()">Calculate</button>
-    </div>
-  </div>
-  <div class="calc">
-    <div class="row">
-      <div class="col">
-        <div class="inner">
-          Zarobiłeś
-          <div id="show-profitability-wrapper"></div>
-        </div>
-      </div>
-      <div class="col">
+  <div id="app" class="form-wrapper"></div>
 
-      </div>
-    </div>
-  </div>
-  <!-- <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script> -->
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
 
   <!-- Load our React component. -->
-  <script src="show-profitability.js"></script>
+  <script type="module" src="/index.js"></script>
 </body>
 </html>
 

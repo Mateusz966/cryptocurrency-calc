@@ -10,7 +10,7 @@ const port = 9222;
 const apiServer = 'https://www.coincalculators.io/api/allcoins.aspx?hashrate=1000000';
 const app = express();
 
-app.use(express.static('client'));
+app.use('/', express.static('client'));
 app.use(bodyParser.json());
 
 // Check if the directory exist if not it was create directory and empty json file
@@ -39,10 +39,6 @@ if (!fs.existsSync(jsonResponseDirectory)) {
 app.post('/calc-value', (req, res) => {
   const { cryptocurrency, hashrate, powerConsuming } = req.body;
   res.json(apiResponse(cryptocurrency, hashrate, powerConsuming));
-});
-
-app.get('/', (req, res) => {
-  res.sendFile('index.html', { root: `"${__dirname}/client"` });
 });
 
 app.listen(port, () => {
