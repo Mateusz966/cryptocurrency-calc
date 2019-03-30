@@ -1,8 +1,11 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable class-methods-use-this */
 /* eslint-disable no-undef */
 /* eslint-disable react/react-in-jsx-scope */
 class Form extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       cryptocurrency: '',
       hashrate: '',
@@ -10,11 +13,6 @@ class Form extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleRequestToServer = this.handleRequestToServer.bind(this);
-  }
-
-  handleRequestToServer(event) {
-    console.log(event);
   }
 
   handleChange(event) {
@@ -25,11 +23,12 @@ class Form extends React.Component {
 
   render() {
     const { cryptocurrency, hashrate, powerConsuming } = this.state;
+    const { handleRequestToServer } = this.props;
     return (
       <div className="form-wrapper">
-        <input id="cryptocurrency" name="cryptocurrency" value={cryptocurrency} onChange={ (event) => { this.handleChange(event); this.handleRequestToServer(event); }} type="text" placeholder="Nazwa kryptowaluty" />
-        <input id="hashrate" name="hashrate" type="text" value={hashrate} onChange={this.handleChange} placeholder="hashrate w MH/s" />
-        <input id="powerConsuming" name="powerConsuming" value={powerConsuming} onChange={this.handleChange} type="text" placeholder="Pobór energii przez koparkę" />
+        <input id="cryptocurrency" name="cryptocurrency" value={cryptocurrency} onChange={(event) => { this.handleChange(event); handleRequestToServer(); }} type="text" placeholder="Nazwa kryptowaluty" />
+        <input id="hashrate" name="hashrate" type="text" value={hashrate} onChange={(event) => { this.handleChange(event); handleRequestToServer(); }} placeholder="hashrate w MH/s" />
+        <input id="powerConsuming" name="powerConsuming" value={powerConsuming} onChange={(event) => { this.handleChange(event); handleRequestToServer(); }} type="text" placeholder="Pobór energii przez koparkę" />
       </div>
     );
   }

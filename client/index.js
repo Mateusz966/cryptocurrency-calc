@@ -6,11 +6,48 @@
 import ShowProfitability from './show-profitability.js';
 import Form from './form.js';
 
+var showProfit = function showProfit(profit) {
+  var jsonProfit = JSON.parse(profit);
+  console.log(jsonProfit);
+};
+
+var handleRequestToServer = function handleRequestToServer() {
+  var url = '/calc-value';
+
+  var data = {
+    cryptocurrency: '',
+    hashrate: 0,
+    powerConsuming: 0
+  };
+
+  var cryptocurrency = document.querySelector('#cryptocurrency').value;
+  var hashrate = document.querySelector('#hashrate').value;
+  var powerConsuming = document.querySelector('#powerConsuming').value;
+
+  data.cryptocurrency = cryptocurrency;
+  data.hashrate = hashrate;
+  data.powerConsuming = powerConsuming;
+
+  var req = new XMLHttpRequest();
+
+  req.open('POST', url, true);
+  req.setRequestHeader('Content-Type', 'application/json');
+  req.onreadystatechange = function () {
+    if (req.readyState === 4 && req.status === 200) {
+      showProfit(req.response);
+    } else {
+      console.log(req.readyState, req.status);
+    }
+  };
+
+  req.send(JSON.stringify(data));
+};
+
 function App() {
   return React.createElement(
     React.Fragment,
     null,
-    React.createElement(Form, null),
+    React.createElement(Form, { handleRequestToServer: handleRequestToServer }),
     React.createElement(ShowProfitability, null)
   );
 }
