@@ -38,6 +38,7 @@ if (!fs.existsSync(jsonResponseDirectory)) {
 
 app.post('/calc-value', (req, res) => {
   const { cryptocurrency, hashrate, powerConsuming } = req.body;
+  console.log(cryptocurrency, hashrate, powerConsuming);
   res.json(apiResponse(cryptocurrency, hashrate, powerConsuming));
 });
 

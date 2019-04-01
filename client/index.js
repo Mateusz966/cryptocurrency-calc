@@ -6,9 +6,10 @@
 import ShowProfitability from './show-profitability.js';
 import Form from './form.js';
 
-var showProfit = function showProfit(profit) {
-  var jsonProfit = JSON.parse(profit);
-  console.log(jsonProfit);
+var state = {
+  profitPerDay: 0,
+  profitPerMonth: 0,
+  profitPerYear: 0
 };
 
 var handleRequestToServer = function handleRequestToServer() {
@@ -24,9 +25,7 @@ var handleRequestToServer = function handleRequestToServer() {
   var hashrate = document.querySelector('#hashrate').value;
   var powerConsuming = document.querySelector('#powerConsuming').value;
 
-  data.cryptocurrency = cryptocurrency;
-  data.hashrate = hashrate;
-  data.powerConsuming = powerConsuming;
+  data = { cryptocurrency: cryptocurrency, hashrate: hashrate, powerConsuming: powerConsuming };
 
   var req = new XMLHttpRequest();
 
@@ -34,7 +33,8 @@ var handleRequestToServer = function handleRequestToServer() {
   req.setRequestHeader('Content-Type', 'application/json');
   req.onreadystatechange = function () {
     if (req.readyState === 4 && req.status === 200) {
-      showProfit(req.response);
+      state = JSON.parse(req.response);
+      console.log(state);
     } else {
       console.log(req.readyState, req.status);
     }
@@ -48,7 +48,7 @@ function App() {
     React.Fragment,
     null,
     React.createElement(Form, { handleRequestToServer: handleRequestToServer }),
-    React.createElement(ShowProfitability, null)
+    React.createElement(ShowProfitability, state)
   );
 }
 

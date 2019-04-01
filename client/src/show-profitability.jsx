@@ -1,9 +1,10 @@
 /* eslint-disable no-undef */
 /* eslint-disable react/react-in-jsx-scope */
 
-function ShowProfitability(props) {
+function ShowProfitability({ profitPerDay, profitPerMonth, profitPerYear }) {
   return (
     <div className="calc row">
+      {`Dzień ${profitPerDay} Miesiąc ${profitPerMonth} Rok ${profitPerYear}`}
       <SingleProfitabilityBox />
     </div>
   );

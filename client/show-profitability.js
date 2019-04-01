@@ -1,10 +1,15 @@
 /* eslint-disable no-undef */
 /* eslint-disable react/react-in-jsx-scope */
 
-function ShowProfitability(props) {
+function ShowProfitability(_ref) {
+  var profitPerDay = _ref.profitPerDay,
+      profitPerMonth = _ref.profitPerMonth,
+      profitPerYear = _ref.profitPerYear;
+
   return React.createElement(
     "div",
     { className: "calc row" },
+    "Dzie\u0144 " + profitPerDay + " Miesi\u0105c " + profitPerMonth + " Rok " + profitPerYear,
     React.createElement(SingleProfitabilityBox, null)
   );
 }
