@@ -12,6 +12,10 @@ var state = {
   profitPerYear: 0
 };
 
+function render() {
+  ReactDOM.render(React.createElement(App, null), document.querySelector('#app'));
+}
+
 var handleRequestToServer = function handleRequestToServer() {
   var url = '/calc-value';
 
@@ -34,7 +38,7 @@ var handleRequestToServer = function handleRequestToServer() {
   req.onreadystatechange = function () {
     if (req.readyState === 4 && req.status === 200) {
       state = JSON.parse(req.response);
-      console.log(state);
+      render();
     } else {
       console.log(req.readyState, req.status);
     }
@@ -52,4 +56,4 @@ function App() {
   );
 }
 
-ReactDOM.render(React.createElement(App, null), document.querySelector('#app'));
+render();

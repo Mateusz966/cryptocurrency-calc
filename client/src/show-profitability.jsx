@@ -3,8 +3,8 @@
 
 function ShowProfitability({ profitPerDay, profitPerMonth, profitPerYear }) {
   return (
-    <div className="calc row">
-      {`Dzień ${profitPerDay} Miesiąc ${profitPerMonth} Rok ${profitPerYear}`}
+    <div className={`calc row ${(profitPerDay > 0) ? 'positive' : 'negative'}`}>
+      {`Dzień $${profitPerDay} Miesiąc $${profitPerMonth} Rok $${profitPerYear}`}
       <SingleProfitabilityBox />
     </div>
   );
